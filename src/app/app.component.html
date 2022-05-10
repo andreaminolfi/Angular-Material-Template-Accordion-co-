@@ -1,1 +1,26 @@
-<h1>Hello Material</h1>
+<!-- <pre>{{ users | json }}</pre> -->
+
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel *ngFor="let user of users">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{ user.name }}</mat-panel-title>
+    </mat-expansion-panel-header>
+    <div>{{ user.address.street }}</div>
+    <div>{{ user.address.city }}</div>
+    <div>{{ user.address.zipcode }}</div>
+    <mat-action-row>
+      <button
+        #deleteButton
+        (click)="deleteHandler(user.id, deleteButton)"
+        mat-icon-button
+        color="warn"
+      >
+      <mat-spinner 
+      *ngIf="deleteButton.disabled" 
+      [diameter]="20"
+    ></mat-spinner> 
+    <span *ngIf="!deleteButton.disabled">Delete</span>
+      </button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
